@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: stock-monitor
+    env: node
+    plan: free
+    buildCommand: cd client && npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: FINNHUB_TOKEN
+        sync: false
