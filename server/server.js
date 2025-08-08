@@ -14,6 +14,14 @@ const PORT = process.env.PORT || 5000;
 const FINNHUB_TOKEN = process.env.FINNHUB_TOKEN;
 const symbols = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA']; // You can expand this list
 
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
 let clients = [];
 
 wss.on('connection', (ws) => {
